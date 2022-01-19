@@ -12,14 +12,12 @@ def print_fail(msg):
 
 
 def get_image_resize(path, width):
-    '''
-    轉換圖檔到指定的大小，並回傳base64字串
-    '''
+    '''轉換圖檔到指定的大小，並回傳base64字串'''
     try:
         img = Image.open(path)
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         print_fail('無此檔案 {}'.format(path))
-    except Exception as e:
+    except Exception:
         print_fail('無法開啟檔案 {}'.format(path))
     else:
         w, h = img.size
@@ -68,9 +66,7 @@ def pathinfo(filename, field=None):
 
 
 def base64image(filepath):
-    '''
-    將圖檔轉成base64格式的字串，可以直接被html img src使用
-    '''
+    '''將圖檔轉成base64格式的字串，可以直接被html img src使用'''
     try:
         with open(filepath, 'rb') as imageFile:
             strimage = base64.b64encode(imageFile.read())
@@ -121,8 +117,7 @@ def data2image(data_url, filename):
     @param string $filename 要儲存的檔名不含副檔名
     @return string 回傳完整檔名不含路徑
     '''
-    output = re.search(
-        '^data:image\/(jpg|png|gif|jpeg);base64,(.+)', data_url, flags=re.IGNORECASE)
+    output = re.search('^data:image\/(jpg|png|gif|jpeg);base64,(.+)', data_url, flags=re.IGNORECASE)
     #沒找到可用的資料回傳None
     if (output == None): return None
     image_type, image_data = output.groups()
@@ -134,10 +129,7 @@ def data2image(data_url, filename):
 #/ data2image
 
 def main():
-    '''
-    主程式
-    '''
-    folder = sys.path[0]
+    '''主程式'''
     filename = argv_value()
     savename = argv_value('-save')
     try:
