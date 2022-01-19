@@ -12,7 +12,7 @@ def print_fail(msg):
 
 
 def get_image_resize(path, width):
-    """ 轉換圖檔到指定的大小，並回傳base64字串 """
+    """轉換圖檔到指定的大小，並回傳base64字串"""
     try:
         img = Image.open(path)
     except FileNotFoundError:
@@ -99,7 +99,7 @@ def argv_value(prevalue=None, default=None):
 
     try:
         i = sys.argv.index(prevalue)
-    except Exception as e:
+    except Exception:
         return default
     else:
         return argv_index(i+1)
@@ -127,7 +127,7 @@ def data2image(data_url, filename):
 #/ data2image
 
 def main():
-    """ 主程式 """
+    """主程式"""
     filename = argv_value()
     savename = argv_value('-save')
     try:
