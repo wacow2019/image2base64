@@ -41,7 +41,7 @@ def pathinfo(filename, field=None):
     basename = os.path.basename(filename)
     try:
         filename, extension = basename.rsplit(".", 1)
-    except:
+    except Exception:
         filename = basename
         extension = ''
     # /try
@@ -72,7 +72,7 @@ def base64image(filepath):
             strimage = base64.b64encode(imageFile.read())
         # /with ---
 
-    except Exception as e:
+    except Exception:
         return None
     else:
         ext = pathinfo(filepath, 'extension')
@@ -129,7 +129,12 @@ def data2image(data_url, filename):
 #/ data2image
 
 def main():
-    '''主程式'''
+    '''
+    主程式
+    2021 -01開啟寫程式
+    
+    為了怕不過
+    '''
     filename = argv_value()
     savename = argv_value('-save')
     try:
